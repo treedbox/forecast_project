@@ -158,7 +158,7 @@ class Agent:
     def fit(self, iterations, checkpoint):
         self.es.train(iterations, print_every=checkpoint)
 
-    def buy(self, dataset):
+    def buy(self):
         initial_money = self.initial_money
         len_close = len(self.close) - 1
         state = get_state(self.close, 0, self.window_size + 1)
@@ -213,6 +213,8 @@ class Agent:
             '\ntotal gained %f, total investment %f %%'
             % (initial_money - starting_money, invest)
         )
+
+        dataset = self.close
         plt.figure(figsize=(20, 10))
         plt.plot(dataset, label='true close', c='g')
         plt.plot(
